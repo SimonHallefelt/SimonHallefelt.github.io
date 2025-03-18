@@ -3,6 +3,7 @@
 :root {
     --dark-color: #2c2c2c;
     --white-color: #ffffff;
+    --light-text-color: #7c7c7c;
 }
 
 * {
@@ -13,6 +14,22 @@
 
 body {
     min-height: 120vh;
+    color: var(--light-text-color);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--dark-color);
 }
 
 .navbar {
@@ -58,4 +75,21 @@ body {
 
 .navbarButtons a:hover::before {
     width: 100%;
+}
+
+.container {
+    padding-top: 100px;
+    margin-left: 25%;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.intro-text {
+    margin-right: 50px;
+}
+
+.me-img {
+    flex: 0; 
+    height: auto; 
 }
