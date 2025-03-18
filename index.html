@@ -10,13 +10,15 @@
 </head>
 
 <body>
-    <header class="navbar">
-        <a href="#" class="name" >Simon Hallefält</a>
-        <nav class="navbarButtons">
-            <a href="#">Home</a>
-            <a href="#">Games</a>
-        </nav>
-    </header>
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading navbar:', error));
+    </script>
 
 
 
