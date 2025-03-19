@@ -11,7 +11,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-size: 18px;
 }
 
 /* body */
@@ -33,6 +32,8 @@ h5,
 h6,
 .h6 {
   color: var(--dark-color);
+
+  text-transform: capitalize;
 }
 
 /* navbar */
@@ -109,6 +110,11 @@ h6,
     margin-left: 20%;
     max-width: 60%;
     font-size: 18px;
+}
+
+.game-title {
+    display: flex;
+    justify-content: center;
 }
 
 /* game -> sudoku */
