@@ -10,16 +10,46 @@
 </head>
 
 <body>
-    <div id="navbar"></div>
+    <div id="navbar-container"></div>
     <script>
-        fetch('navbar.html')
+        fetch('html/navbar.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('navbar').innerHTML = data;
+                document.getElementById('navbar-container').innerHTML = data;
             })
             .catch(error => console.error('Error loading navbar:', error));
     </script>
 
+
+    <div class="game-container">
+        <div id="sudoku-container"></div>
+        <script>
+            fetch('html/sudoku.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('sudoku-container').innerHTML = data;
+                    generateSudoku()
+                })
+                .catch(error => console.error('Error loading sudoku:', error)
+            );
+            
+
+            function generateSudoku() {
+                const container = document.getElementById('sudoku-table');
+                const table = document.createElement('table');
+                for (let y = 0; y < 9; y++) {
+                    const row = document.createElement('tr');
+                    for (let x = 0; x < 9; x++) {
+                        const cell = document.createElement('td');
+                        cell.textContent = `(${y + 1}, ${x + 1})`;
+                        row.appendChild(cell);
+                    }
+                    table.appendChild(row);
+                }
+                container.appendChild(table);
+            }
+        </script>
+    </div>
 
 
 

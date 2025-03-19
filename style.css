@@ -12,6 +12,7 @@
     box-sizing: border-box;
 }
 
+/* body */
 body {
     min-height: 120vh;
     color: var(--light-text-color);
@@ -32,6 +33,7 @@ h6,
   color: var(--dark-color);
 }
 
+/* navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -77,6 +79,7 @@ h6,
     width: 100%;
 }
 
+/* home -> hello */
 .container {
     padding-top: 100px;
     margin-left: 25%;
@@ -92,4 +95,33 @@ h6,
 .me-img {
     flex: 0; 
     height: auto; 
+}
+
+/* game -> sudoku */
+.game-container {
+    padding-top: 100px;
+    color: var(--dark-color);
+    margin-left: 20%;
+    max-width: 60%;
+}
+
+.sudoku-table {
+    table {
+        padding: 0px;
+        border: 0px;
+        margin: 0px;
+        border-spacing: 0;
+        border: 1px solid black;
+    }
+    tr {
+        padding: 0px;
+        border: 0px;
+        margin: 0px;
+    }
+    td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+        margin: 0px;
+    }
 }
