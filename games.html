@@ -33,7 +33,6 @@
                 .catch(error => console.error('Error loading sudoku:', error)
             );
             
-
             function generateSudoku() {
                 const container = document.getElementById('sudoku-table');
                 const table = document.createElement('table');
@@ -41,12 +40,28 @@
                     const row = document.createElement('tr');
                     for (let x = 0; x < 9; x++) {
                         const cell = document.createElement('td');
-                        cell.textContent = `(${y + 1}, ${x + 1})`;
+                        cell.setAttribute('data-pos', `${y},${x}`);
+                        cell.setAttribute('id', `${y},${x}`);
+                        cell.textContent = `${y + 1}, ${x + 1}`;
+
+                        cell.addEventListener('click', () => {
+                            const pos = cell.id;
+                            const selectedData = document.getElementById('sudoku-table');
+                            selectedData.setAttribute('data-selected', pos);
+                        });
+
                         row.appendChild(cell);
                     }
                     table.appendChild(row);
                 }
                 container.appendChild(table);
+            }
+            
+            function setNumber(value) {
+                const sudokuTable = document.getElementById('sudoku-table');
+                const pos = sudokuTable.getAttribute('data-selected');
+                const selected = document.getElementById(pos);
+                selected.textContent = value;
             }
         </script>
     </div>

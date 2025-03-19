@@ -99,7 +99,7 @@ h6,
     height: auto; 
 }
 
-/* game -> sudoku */
+/* game */
 .game-container {
     padding-top: 100px;
     color: var(--dark-color);
@@ -108,6 +108,7 @@ h6,
     font-size: 18px;
 }
 
+/* game -> sudoku */
 .sudoku-table {
     display: flex;
     align-items: center;
