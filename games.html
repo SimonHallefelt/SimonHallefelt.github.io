@@ -34,31 +34,45 @@
             );
             
             function generateSudoku() {
-                const container = document.getElementById('sudoku-table');
+                const container = document.getElementById('sudoku-table-container');
                 const table = document.createElement('table');
-                for (let y = 0; y < 9; y++) {
-                    const row = document.createElement('tr');
-                    for (let x = 0; x < 9; x++) {
-                        const cell = document.createElement('td');
-                        cell.setAttribute('data-pos', `${y},${x}`);
-                        cell.setAttribute('id', `${y},${x}`);
-                        cell.textContent = `${y + 1}, ${x + 1}`;
+                table.classList.add("sudoku-table")
+                for (let i = 0; i < 3; i++) {
+                    const row3x3 = document.createElement('tr');
+                    for (let j = 0; j < 3; j++) {
+                        const table3x3 = document.createElement('table');
+                        table3x3.classList.add('sudoku-table-3x3')
+                        for (let yy = 0; yy < 3; yy++) {
+                            const row = document.createElement('tr');
+                            for (let xx = 0; xx < 3; xx++) {
+                                const y = yy + 3 * i;
+                                const x = xx + 3 * j;
+                                const cell = document.createElement('td');
+                                cell.setAttribute('data-pos', `${y},${x}`);
+                                cell.setAttribute('id', `${y},${x}`);
+                                cell.textContent = `${y + 1}, ${x + 1}`;
 
-                        cell.addEventListener('click', () => {
-                            const pos = cell.id;
-                            const selectedData = document.getElementById('sudoku-table');
-                            selectedData.setAttribute('data-selected', pos);
-                        });
+                                cell.addEventListener('click', () => {
+                                    const pos = cell.id;
+                                    const selectedData = document.getElementById('sudoku-table-container');
+                                    selectedData.setAttribute('data-selected', pos);
+                                });
 
-                        row.appendChild(cell);
+                                row.appendChild(cell);
+                            }
+                            table3x3.appendChild(row);
+                        }
+                        const td3x3 = document.createElement('td');
+                        td3x3.appendChild(table3x3)
+                        row3x3.appendChild(td3x3);
                     }
-                    table.appendChild(row);
+                    table.appendChild(row3x3);
                 }
                 container.appendChild(table);
             }
             
             function setNumber(value) {
-                const sudokuTable = document.getElementById('sudoku-table');
+                const sudokuTable = document.getElementById('sudoku-table-container');
                 const pos = sudokuTable.getAttribute('data-selected');
                 const selected = document.getElementById(pos);
                 selected.textContent = value;

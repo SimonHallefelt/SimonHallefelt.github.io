@@ -101,6 +101,9 @@ h6,
 
 /* game */
 .game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 100px;
     color: var(--dark-color);
     margin-left: 20%;
@@ -109,24 +112,36 @@ h6,
 }
 
 /* game -> sudoku */
+.sudoku-table-container {
+    margin: 0px;
+    padding: 0px;
+}
+
 .sudoku-table {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    table {
-        width: 60%;
-        aspect-ratio: 1;
-        padding: 0px;
-        border: 0px;
-        margin: 0px;
-        border-spacing: 0;
-        border: 1px solid var(--dark-color);
-    }
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    border-spacing: 0;
+    border: 2px solid var(--dark-color);
     tr {
         padding: 0px;
         border: 0px;
         margin: 0px;
     }
+    td {
+        aspect-ratio: 1;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+.sudoku-table-3x3{
+    margin: 0px;
+    padding: 0px;
+    aspect-ratio: 1;
+    border-spacing: 0;
+    border: 1px solid var(--dark-color);
+
     td {
         aspect-ratio: 1;
         border: 1px solid var(--dark-color);
