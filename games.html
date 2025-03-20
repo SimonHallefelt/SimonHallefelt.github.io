@@ -23,7 +23,7 @@
 
     <div class="game-container">
         <div id="sudoku-container"></div>
-        
+
         <script id="sudoku-scripts">
             fetch('html/sudoku.html')
                 .then(response => response.text())
@@ -102,12 +102,12 @@
                         numbersLeft--;
                     }
 
-                    console.log("hello 1, made random start")
+                    console.log("Made random start")
                     
                     getSolution(vec);
                     if (vec.length == 0) continue;
 
-                    console.log("hello 2, solution", vec)
+                    console.log("Made solution", vec)
 
                     var numbersLeft = numberEmpty;
                     while(numbersLeft > 0) {
@@ -187,27 +187,25 @@
             }
             let currentSudoku = []
             function setSudoku(sudoku) {
-                console.log("hello, setSudoku()")
+                console.log("setSudoku()")
                 console.log(sudoku)
                 for (let y = 0; y < 9; y++) {
                     for (let x = 0; x < 9; x++) {
                         const pos = `${y},${x}`;
                         const box = document.getElementById(pos);
-                        if (sudoku[y][x] != 0) box.textContent = `${sudoku[y][x]}`;
-                        else box.textContent = ' ';
+                        if (sudoku[y][x] != 0) {
+                            box.textContent = `${sudoku[y][x]}`;
+                            if (!box.classList.contains("SudokuInitialNumber")) box.classList.add("SudokuInitialNumber")
+                        } else {
+                            box.textContent = ' ';
+                            if (box.classList.contains("SudokuInitialNumber")) box.classList.remove("SudokuInitialNumber")
+                        }
                     }
                 }
                 currentSudoku = sudoku;
             }
             function resetSudoku() {
-                for (let y = 0; y < 9; y++) {
-                    for (let x = 0; x < 9; x++) {
-                        const pos = `${y},${x}`;
-                        const box = document.getElementById(pos);
-                        if (currentSudoku[y][x] != 0) box.textContent = `${currentSudoku[y][x]}`;
-                        else box.textContent = ' ';
-                    }
-                }
+                setSudoku(currentSudoku);
             }
             function getSudoku() {
                 let sudoku = Array(9).fill().map(() => Array(9).fill(0));

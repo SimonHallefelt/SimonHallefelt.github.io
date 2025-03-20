@@ -161,6 +161,7 @@ h6,
         aspect-ratio: 1;
         border: 1px solid var(--dark-color);
         text-align: center;
+        font-size: 20px;
     }
 }
 
@@ -181,4 +182,16 @@ h6,
 
 .number-selection {
     padding: 5px;
+}
+
+.SudokuInitialNumber {
+    font-weight: bolder;
+    font-size: 20px;
+    font-style: italic;
+}
+
+.sudoku-player-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
