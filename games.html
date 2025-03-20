@@ -49,14 +49,22 @@
                                 const y = yy + 3 * i;
                                 const x = xx + 3 * j;
                                 const cell = document.createElement('td');
-                                cell.setAttribute('data-pos', `${y},${x}`);
                                 cell.setAttribute('id', `${y},${x}`);
+                                cell.setAttribute('tabindex', '0');
                                 cell.textContent = `${y + 1}, ${x + 1}`;
 
                                 cell.addEventListener('click', () => {
+                                    cell.focus();
                                     const pos = cell.id;
                                     const selectedData = document.getElementById('sudoku-table-container');
                                     selectedData.setAttribute('data-selected', pos);
+                                });
+
+                                cell.addEventListener('keydown', (event) => {
+                                    const keyPressed = event.key; 
+                                    if (!isNaN(keyPressed) && keyPressed >= '0' && keyPressed <= '9') {
+                                        setNumber(keyPressed);
+                                    }
                                 });
 
                                 row.appendChild(cell);
