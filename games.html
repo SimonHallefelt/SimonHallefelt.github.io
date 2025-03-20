@@ -23,7 +23,8 @@
 
     <div class="game-container">
         <div id="sudoku-container"></div>
-        <script>
+        
+        <script id="sudoku-scripts">
             fetch('html/sudoku.html')
                 .then(response => response.text())
                 .then(data => {
@@ -72,18 +73,23 @@
                 newSudoku()
             }
             
+            let sudokuSolved = false;
             function setNumber(value) {
                 const sudokuTable = document.getElementById('sudoku-table-container');
                 const pos = sudokuTable.getAttribute('data-selected');
                 const selected = document.getElementById(pos);
                 selected.textContent = value;
                 const b = isSudokuCorrect(getSudoku());
-                console.log("is sudoku correct ", b)
+                if (b && !sudokuSolved) {
+                    console.log("Sudoku solved");
+                    updateScore();
+                    sudokuSolved = true;
+                }
             }
 
             function newSudoku() {
                 const numberToAddAtStart = 20;
-                const numberEmpty = 10;
+                const numberEmpty = 3;
                 while(true) {
                     let vec = Array(9).fill().map(() => Array(9).fill(0));
                     var numbersLeft = numberToAddAtStart;
@@ -111,6 +117,7 @@
                         vec[row][col] = 0;
                         numbersLeft--;
                     }
+                    sudokuSolved = false;
                     setSudoku(vec);
                     return;
                 }
@@ -178,9 +185,7 @@
 
                 return false;
             }
-            function resetSudoku() {
-                
-            }
+            let currentSudoku = []
             function setSudoku(sudoku) {
                 console.log("hello, setSudoku()")
                 console.log(sudoku)
@@ -189,6 +194,17 @@
                         const pos = `${y},${x}`;
                         const box = document.getElementById(pos);
                         if (sudoku[y][x] != 0) box.textContent = `${sudoku[y][x]}`;
+                        else box.textContent = ' ';
+                    }
+                }
+                currentSudoku = sudoku;
+            }
+            function resetSudoku() {
+                for (let y = 0; y < 9; y++) {
+                    for (let x = 0; x < 9; x++) {
+                        const pos = `${y},${x}`;
+                        const box = document.getElementById(pos);
+                        if (currentSudoku[y][x] != 0) box.textContent = `${currentSudoku[y][x]}`;
                         else box.textContent = ' ';
                     }
                 }
@@ -205,6 +221,21 @@
                 }
                 return sudoku;
             }
+
+            let score = 0;
+            function updateScore() {
+                const sudokuScore = document.getElementById("sudoku-score");
+                score++;
+                sudokuScore.setAttribute("data-score", score);
+                sudokuScore.textContent = `Score: ${score}`;
+            }
+            let sec = 0;
+            function updateTime() {
+                sec++;
+                const timer = document.getElementById("sudoku-time");
+                timer.textContent = `Time: ${sec}s`;
+            }
+            setInterval(updateTime, 1000);
 
         </script>
     </div>
