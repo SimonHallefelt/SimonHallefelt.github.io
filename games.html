@@ -69,6 +69,7 @@
                     table.appendChild(row3x3);
                 }
                 container.appendChild(table);
+                newSudoku()
             }
             
             function setNumber(value) {
@@ -76,7 +77,135 @@
                 const pos = sudokuTable.getAttribute('data-selected');
                 const selected = document.getElementById(pos);
                 selected.textContent = value;
+                const b = isSudokuCorrect(getSudoku());
+                console.log("is sudoku correct ", b)
             }
+
+            function newSudoku() {
+                const numberToAddAtStart = 20;
+                const numberEmpty = 10;
+                while(true) {
+                    let vec = Array(9).fill().map(() => Array(9).fill(0));
+                    var numbersLeft = numberToAddAtStart;
+                    while(numbersLeft > 0) {
+                        const row = Math.floor(Math.random() * 9);
+                        const col = Math.floor(Math.random() * 9);
+                        if (vec[row][col] != 0) continue;
+                        vec[row][col] = Math.floor(Math.random() * 9) + 1;
+                        if (illegalMove(vec, row, col)) vec[row][col] = 0;
+                        numbersLeft--;
+                    }
+
+                    console.log("hello 1, made random start")
+                    
+                    getSolution(vec);
+                    if (vec.length == 0) continue;
+
+                    console.log("hello 2, solution", vec)
+
+                    var numbersLeft = numberEmpty;
+                    while(numbersLeft > 0) {
+                        const row = Math.floor(Math.random() * 9);
+                        const col = Math.floor(Math.random() * 9);
+                        if (vec[row][col] == 0) continue;
+                        vec[row][col] = 0;
+                        numbersLeft--;
+                    }
+                    setSudoku(vec);
+                    return;
+                }
+            }
+            function getSolution(sudoku, row=0) {
+                let y = row;
+                let x = 0;
+                outerLoop:
+                for (let i = row; i < 9; i++) {
+                    for (let j = 0; j < 9; j++) {
+                        if (sudoku[i][j] != 0) {
+                            if (i == 8 && j == 8) return sudoku;
+                            continue;
+                        }
+                        y = i;
+                        x = j;
+                        break outerLoop;
+                    }
+                }
+
+                for (let v = 1; v <= 9; v++) {
+                    sudoku[y][x] = v;
+                    if (illegalMove(sudoku, y, x)) continue;
+                    const s = getSolution(sudoku, y);
+                    if (s.length != 0) return s;
+                }
+                sudoku[y][x] = 0
+                return [];
+            }
+            function isSudokuCorrect() {
+                for (let y = 0; y < 9; y++) {
+                    for (let x = 0; x < 9; x++) {
+                        if (sudoku[y][x] < 1 || sudoku[y][x] > 9) return false;
+                        if (illegalMove(sudoku, y, x)) return false;
+                    }
+                }
+                return true;
+            }
+            function isSudokuCorrect(sudoku) {
+                for (let y = 0; y < 9; y++) {
+                    for (let x = 0; x < 9; x++) {
+                        if (sudoku[y][x] < 1 || sudoku[y][x] > 9) return false;
+                        if (illegalMove(sudoku, y, x)) return false;
+                    }
+                }
+                return true;
+            }
+            function illegalMove(sudoku, row, col) {
+                const v = sudoku[row][col];
+                // row and col
+                for (let i = 0; i < 9; i++) {
+                    if (i != col && v == sudoku[row][i]) return true
+                    if (i != row && v == sudoku[i][col]) return true
+                }
+
+                // 3x3
+                const box_r = Math.floor(row/3);
+                const box_c = Math.floor(col/3);
+                for (let y = box_r*3; y < box_r*3+3; y++) {
+                    for (let x = box_c*3; x < box_c*3+3; x++) {
+                        if (x == col && y == row) continue;
+                        if (v == sudoku[y][x]) return true;
+                    }
+                }
+
+                return false;
+            }
+            function resetSudoku() {
+                
+            }
+            function setSudoku(sudoku) {
+                console.log("hello, setSudoku()")
+                console.log(sudoku)
+                for (let y = 0; y < 9; y++) {
+                    for (let x = 0; x < 9; x++) {
+                        const pos = `${y},${x}`;
+                        const box = document.getElementById(pos);
+                        if (sudoku[y][x] != 0) box.textContent = `${sudoku[y][x]}`;
+                        else box.textContent = ' ';
+                    }
+                }
+            }
+            function getSudoku() {
+                let sudoku = Array(9).fill().map(() => Array(9).fill(0));
+                for (let y = 0; y < 9; y++) {
+                    for (let x = 0; x < 9; x++) {
+                        const pos = `${y},${x}`;
+                        const box = document.getElementById(pos);
+                        const content = box.textContent
+                        sudoku[y][x] = content == ' ' ? sudoku[y][x] = 0 : parseInt(content, 10);
+                    }
+                }
+                return sudoku;
+            }
+
         </script>
     </div>
 

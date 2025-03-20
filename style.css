@@ -124,11 +124,14 @@ h6,
 }
 
 .sudoku-table {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
     padding: 0px;
     border: 0px;
     margin: 0px;
     border-spacing: 0;
-    border: 2px solid var(--dark-color);
+    border: 1px solid var(--dark-color);
     tr {
         padding: 0px;
         border: 0px;
@@ -142,18 +145,23 @@ h6,
 }
 
 .sudoku-table-3x3{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
     margin: 0px;
     padding: 0px;
-    aspect-ratio: 1;
     border-spacing: 0;
     border: 1px solid var(--dark-color);
+    border-collapse: collapse;
 
     td {
+        width: 33%;
+        height: 33%;
         aspect-ratio: 1;
         border: 1px solid var(--dark-color);
-        padding: 8px;
+        /* padding: 8px; */
         text-align: center;
-        margin: 0px;
+        /* margin: 0px; */
     }
 }
 
