@@ -78,6 +78,7 @@
                 const sudokuTable = document.getElementById('sudoku-table-container');
                 const pos = sudokuTable.getAttribute('data-selected');
                 const selected = document.getElementById(pos);
+                if (selected.classList.contains("SudokuInitialNumber")) return;
                 selected.textContent = value;
                 const b = isSudokuCorrect(getSudoku());
                 if (b && !sudokuSolved) {
