@@ -195,7 +195,6 @@
                 return false;
             }
             function sudokuErrorMarking(value, row, col, oldValue) {
-                console.log(value, row, col, oldValue);
                 const sudoku = getSudoku();
                 let wrong = 0;
                 // row and col
@@ -233,7 +232,6 @@
                         }
                     }
                 }
-
                 editWrong(row, col, wrong);
             }
             function editWrong(row, col, valueModifier) {
@@ -248,8 +246,7 @@
             }
             let currentSudoku = []
             function setSudoku(sudoku) {
-                console.log("setSudoku()")
-                console.log(sudoku)
+                console.log("setSudoku()", sudoku)
                 for (let y = 0; y < 9; y++) {
                     for (let x = 0; x < 9; x++) {
                         const pos = `${y},${x}`;
@@ -287,7 +284,6 @@
             function updateScore() {
                 const sudokuScore = document.getElementById("sudoku-score");
                 score++;
-                // sudokuScore.setAttribute("data-score", score);
                 sudokuScore.textContent = `Score: ${score}`;
             }
             let sec = 0;
