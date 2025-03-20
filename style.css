@@ -194,4 +194,6 @@ h6,
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: 1%;
+    margin-right: 1%;
 }

@@ -104,7 +104,7 @@
 
                     console.log("Made random start")
                     
-                    getSolution(vec);
+                    vec = getSolution(vec);
                     if (vec.length == 0) continue;
 
                     console.log("Made solution", vec)
@@ -122,7 +122,7 @@
                     return;
                 }
             }
-            function getSolution(sudoku, row=0) {
+            function getSolution(sudoku, row=0, startTime=new Date()) {
                 let y = row;
                 let x = 0;
                 outerLoop:
@@ -141,8 +141,9 @@
                 for (let v = 1; v <= 9; v++) {
                     sudoku[y][x] = v;
                     if (illegalMove(sudoku, y, x)) continue;
-                    const s = getSolution(sudoku, y);
+                    const s = getSolution(sudoku, y, startTime);
                     if (s.length != 0) return s;
+                    if (new Date() - startTime > 300) return [];
                 }
                 sudoku[y][x] = 0
                 return [];
