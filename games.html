@@ -51,6 +51,7 @@
                                 const cell = document.createElement('td');
                                 cell.setAttribute('id', `${y},${x}`);
                                 cell.setAttribute('tabindex', '0');
+                                cell.setAttribute('data-wrong', '0');
                                 cell.textContent = `${y + 1}, ${x + 1}`;
 
                                 cell.addEventListener('click', () => {
@@ -87,12 +88,19 @@
                 const pos = sudokuTable.getAttribute('data-selected');
                 const selected = document.getElementById(pos);
                 if (selected.classList.contains("SudokuInitialNumber")) return;
+                const oldValue = selected.textContent;
+                if (oldValue == value) return;
                 selected.textContent = value;
                 const b = isSudokuCorrect(getSudoku());
                 if (b && !sudokuSolved) {
                     console.log("Sudoku solved");
                     updateScore();
                     sudokuSolved = true;
+                } else if (!b) {
+                    const p = pos.split(",");
+                    const row = p[0];
+                    const col = p[1];
+                    sudokuErrorMarking(value == ' ' ? 0 : parseInt(value, 10), row, col, oldValue == ' ' ? 0 : parseInt(oldValue, 10));
                 }
             }
 
@@ -157,15 +165,6 @@
                 sudoku[y][x] = 0
                 return [];
             }
-            function isSudokuCorrect() {
-                for (let y = 0; y < 9; y++) {
-                    for (let x = 0; x < 9; x++) {
-                        if (sudoku[y][x] < 1 || sudoku[y][x] > 9) return false;
-                        if (illegalMove(sudoku, y, x)) return false;
-                    }
-                }
-                return true;
-            }
             function isSudokuCorrect(sudoku) {
                 for (let y = 0; y < 9; y++) {
                     for (let x = 0; x < 9; x++) {
@@ -195,6 +194,58 @@
 
                 return false;
             }
+            function sudokuErrorMarking(value, row, col, oldValue) {
+                console.log(value, row, col, oldValue);
+                const sudoku = getSudoku();
+                let wrong = 0;
+                // row and col
+                for (let i = 0; i < 9; i++) {
+                    if (i != col && value == sudoku[row][i] && value != 0) {
+                        wrong++;
+                        editWrong(row, i, 1);
+                    }
+                    if (i != row && value == sudoku[i][col] && value != 0) {
+                        wrong++;
+                        editWrong(i, col, 1);
+                    }
+                    if (i != col && oldValue == sudoku[row][i] && oldValue != 0) {
+                        wrong--;
+                        editWrong(row, i, -1);
+                    }
+                    if (i != row && oldValue == sudoku[i][col] && oldValue != 0) {
+                        wrong--;
+                        editWrong(i, col, -1);
+                    }
+                }
+                // 3x3
+                const box_r = Math.floor(row/3);
+                const box_c = Math.floor(col/3);
+                for (let y = box_r*3; y < box_r*3+3; y++) {
+                    for (let x = box_c*3; x < box_c*3+3; x++) {
+                        if (x == col && y == row) continue;
+                        if (value == sudoku[y][x] && value != 0) {
+                            wrong++;
+                            editWrong(y, x, 1);
+                        }
+                        if (oldValue == sudoku[y][x] && oldValue != 0) {
+                            wrong--;
+                            editWrong(y, x, -1);
+                        }
+                    }
+                }
+
+                editWrong(row, col, wrong);
+            }
+            function editWrong(row, col, valueModifier) {
+                const selected = document.getElementById(`${row},${col}`);
+                let wrong = parseInt(selected.getAttribute('data-wrong'), 10) + valueModifier;
+                selected.setAttribute('data-wrong', wrong);
+                if (wrong == 0 && valueModifier != 0) {
+                    selected.classList.remove("sudokuIncorrectValue");
+                } else if (wrong != 0 && !selected.classList.contains("sudokuIncorrectValue")) {
+                    selected.classList.add("sudokuIncorrectValue");
+                }
+            }
             let currentSudoku = []
             function setSudoku(sudoku) {
                 console.log("setSudoku()")
@@ -203,6 +254,8 @@
                     for (let x = 0; x < 9; x++) {
                         const pos = `${y},${x}`;
                         const box = document.getElementById(pos);
+                        box.setAttribute('data-wrong', '0');
+                        if (box.classList.contains("sudokuIncorrectValue")) box.classList.remove("sudokuIncorrectValue");
                         if (sudoku[y][x] != 0) {
                             box.textContent = `${sudoku[y][x]}`;
                             if (!box.classList.contains("SudokuInitialNumber")) box.classList.add("SudokuInitialNumber")
@@ -224,7 +277,7 @@
                         const pos = `${y},${x}`;
                         const box = document.getElementById(pos);
                         const content = box.textContent
-                        sudoku[y][x] = content == ' ' ? sudoku[y][x] = 0 : parseInt(content, 10);
+                        sudoku[y][x] = content == ' ' ? 0 : parseInt(content, 10);
                     }
                 }
                 return sudoku;
@@ -234,7 +287,7 @@
             function updateScore() {
                 const sudokuScore = document.getElementById("sudoku-score");
                 score++;
-                sudokuScore.setAttribute("data-score", score);
+                // sudokuScore.setAttribute("data-score", score);
                 sudokuScore.textContent = `Score: ${score}`;
             }
             let sec = 0;
