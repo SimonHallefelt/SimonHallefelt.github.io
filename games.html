@@ -96,12 +96,11 @@
                     console.log("Sudoku solved");
                     updateScore();
                     sudokuSolved = true;
-                } else if (!b) {
-                    const p = pos.split(",");
-                    const row = p[0];
-                    const col = p[1];
-                    sudokuErrorMarking(value == ' ' ? 0 : parseInt(value, 10), row, col, oldValue == ' ' ? 0 : parseInt(oldValue, 10));
                 }
+                const p = pos.split(",");
+                const row = p[0];
+                const col = p[1];
+                sudokuErrorMarking(value == ' ' ? 0 : parseInt(value, 10), row, col, oldValue == ' ' ? 0 : parseInt(oldValue, 10));
             }
 
             function newSudoku() {
