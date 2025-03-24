@@ -23,13 +23,39 @@
             <button class="algorithm-language-button"> Rust</button>
         </nav>
 
-
+        <div class="algorithm-container">
+            <pre> 
+            <code class="language-java">
+                private ArrayList&lt;Integer&gt; bfs(HashMap&lt;Integer, HashSet&lt;Integer&gt;&gt; graf, int startNode, int endNode) {
+                    Queue&lt;Integer&gt; possibleRouts = new LinkedList&lt;&gt;();
+                    HashMap&lt;Integer, Integer&gt; pastNodes = new HashMap&lt;&gt;();
+                    ArrayList&lt;Integer&gt; path = new ArrayList&lt;&gt;();
+                    if(startNode != endNode) possibleRouts.add(startNode);
+            
+                    outer: while(!possibleRouts.isEmpty()){
+                        int v = possibleRouts.poll();
+                        for(int s : graf.get(v)){
+                            if(!pastNodes.containsKey(s)){
+                                possibleRouts.add(s);
+                                pastNodes.put(s, v);
+                                if(s == endNode){
+                                    while(true){
+                                        path.add(s);
+                                        if(s == startNode) break outer;
+                                        s = pastNodes.get(s);
+                                    }
+                                }
+                            }
+                        }
+                    }
+            
+                    Collections.reverse(path);
+                    return path;
+                }
+            </code>
+        </pre>
+        </div>
     </div>
-
-
-
-
-
 
 
 
