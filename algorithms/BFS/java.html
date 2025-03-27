@@ -6,10 +6,10 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BFS {
-    private ArrayList<Integer> bfs(HashMap<Integer, HashSet<Integer>> graf, int startNode, int endNode) {
-        Queue<Integer> possibleRouts = new LinkedList<>();
-        HashMap<Integer, Integer> pastNodes = new HashMap<>();
-        ArrayList<Integer> path = new ArrayList<>();
+    private ArrayList&lt;Integer&gt; bfs(HashMap&lt;Integer, HashSet&lt;Integer&gt;&gt; graf, int startNode, int endNode) {
+        Queue&lt;Integer&gt; possibleRouts = new LinkedList&lt;&gt;();
+        HashMap&lt;Integer, Integer&gt; pastNodes = new HashMap&lt;&gt;();
+        ArrayList&lt;Integer&gt; path = new ArrayList&lt;&gt;();
         if(startNode != endNode) possibleRouts.add(startNode);
 
         outer: while(!possibleRouts.isEmpty()){

@@ -221,6 +221,14 @@ h6,
 .algorithms-container {
     width: 60%;
     margin-left: 20%;
+}
+
+.algorithm-container {
     margin-top: 20px;
     border: 2px solid var(--accent-color);
+}
+
+.algorithm-code {
+    margin-top: 20px;
+    border-top: 2px solid var(--accent-color);
 }

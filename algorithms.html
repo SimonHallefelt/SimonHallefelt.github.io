@@ -11,60 +11,122 @@
 
 <body>
     <div id="navbar-container"></div>
-
-    <h2 class="algorithms-title">All the algorithms have been implemented by me</h2>
-
-    <div class="algorithms-container">
-        <h3 class="algorithm-title">BFS</h3>
-        <nav class="algorithm-languages">
-            <button class="algorithm-language-button"> Java</button>
-            <button class="algorithm-language-button"> Python</button>
-            <button class="algorithm-language-button"> Javascript</button>
-            <button class="algorithm-language-button"> Rust</button>
-        </nav>
-
-        <div class="algorithm-container">
-            <pre> 
-            <code class="language-java">
-                private ArrayList&lt;Integer&gt; bfs(HashMap&lt;Integer, HashSet&lt;Integer&gt;&gt; graf, int startNode, int endNode) {
-                    Queue&lt;Integer&gt; possibleRouts = new LinkedList&lt;&gt;();
-                    HashMap&lt;Integer, Integer&gt; pastNodes = new HashMap&lt;&gt;();
-                    ArrayList&lt;Integer&gt; path = new ArrayList&lt;&gt;();
-                    if(startNode != endNode) possibleRouts.add(startNode);
-            
-                    outer: while(!possibleRouts.isEmpty()){
-                        int v = possibleRouts.poll();
-                        for(int s : graf.get(v)){
-                            if(!pastNodes.containsKey(s)){
-                                possibleRouts.add(s);
-                                pastNodes.put(s, v);
-                                if(s == endNode){
-                                    while(true){
-                                        path.add(s);
-                                        if(s == startNode) break outer;
-                                        s = pastNodes.get(s);
-                                    }
-                                }
-                            }
-                        }
-                    }
-            
-                    Collections.reverse(path);
-                    return path;
-                }
-            </code>
-        </pre>
-        </div>
-    </div>
-
-
-
     <script>
         fetch('html/navbar.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
+                document.getElementById('navbar-container').innerHTML = data
             })
-            .catch(error => console.error('Error loading navbar:', error));
+            .catch(error => console.error('Error loading navbar:', error))
     </script>
+
+    <h2 class="algorithms-title">All the algorithms have been implemented by me</h2>
+
+    <!-- <div class="algorithms-container">
+        <div id="algorithm-container" class="algorithm-container" data-algorithm="BFS">
+            <h3 class="algorithm-title">BFS</h3>
+            <nav class="algorithm-languages-buttons">
+                <button class="algorithm-language-button"> Java</button>
+                <button class="algorithm-language-button"> Rust</button>
+            </nav>
+
+            <div class="algorithm-code">
+                <pre> 
+                <code class="language-java">
+                    private ArrayList&lt;Integer&gt; bfs(HashMap&lt;Integer, HashSet&lt;Integer&gt;&gt; graf, int startNode, int endNode) {
+                        Queue&lt;Integer&gt; possibleRouts = new LinkedList&lt;&gt;();
+                        HashMap&lt;Integer, Integer&gt; pastNodes = new HashMap&lt;&gt;();
+                        ArrayList&lt;Integer&gt; path = new ArrayList&lt;&gt;();
+                        if(startNode != endNode) possibleRouts.add(startNode);
+
+                        outer: while(!possibleRouts.isEmpty()){
+                            int v = possibleRouts.poll();
+                            for(int s : graf.get(v)){
+                                if(!pastNodes.containsKey(s)){
+                                    possibleRouts.add(s);
+                                    pastNodes.put(s, v);
+                                    if(s == endNode){
+                                        while(true){
+                                            path.add(s);
+                                            if(s == startNode) break outer;
+                                            s = pastNodes.get(s);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Collections.reverse(path);
+                        return path;
+                    }
+                </code>
+                </pre>
+            </div>
+        </div>
+    </div> -->
+    <div id="algorithms-container" class="algorithms-container">
+        <script>
+            const algorithms = {
+                "BFS" : ["java", "rust"]
+            }
+    
+            makeAlgorithmsContainers()
+            function makeAlgorithmsContainers() {
+                const algorithmsContainer = document.getElementById('algorithms-container');
+                Object.keys(algorithms).forEach(algorithm => {
+                    const algorithmContainer = document.createElement('div')
+                    algorithmContainer.classList.add("algorithm-container")
+                    algorithmContainer.setAttribute('id', 'algorithm-container')
+                    algorithmContainer.setAttribute('data-algorithm', algorithm)
+
+                    const algorithmTitle = document.createElement('h3')
+                    algorithmTitle.classList.add('algorithm-title')
+                    algorithmTitle.textContent = algorithm
+                    algorithmContainer.appendChild(algorithmTitle)
+
+                    const algorithmLanguagesButtons = document.createElement('nav')
+                    algorithmLanguagesButtons.classList.add('algorithm-languages-buttons')
+                    algorithms[algorithm].forEach(language => {
+                        const algorithmLanguageButton = document.createElement('button')
+                        algorithmLanguageButton.classList.add('algorithm-language-button')
+                        algorithmLanguageButton.textContent = language
+                        algorithmLanguageButton.addEventListener('click', () => {
+                            addAlgorithmCode(algorithm, language);
+                        });
+                        algorithmContainer.appendChild(algorithmLanguageButton)
+                    })
+                    algorithmContainer.appendChild(algorithmLanguagesButtons)
+
+                    const algorithmCode = document.createElement('div')
+                    algorithmCode.classList.add('algorithm-code')
+                    algorithmCode.setAttribute('id', 'algorithm-code-'+algorithm)
+                    const pre = document.createElement('pre')
+                    const code = document.createElement('code')
+                    code.classList.add('language-' + algorithms[algorithm][0])
+                    code.setAttribute('id', 'algorithm-code-container-'+algorithm)
+                    pre.appendChild(code)
+                    algorithmCode.appendChild(pre)
+                    algorithmContainer.appendChild(algorithmCode)
+
+                    algorithmsContainer.appendChild(algorithmContainer)
+
+                    addAlgorithmCode(algorithm, algorithms[algorithm][0])
+                })
+            }
+
+            function addAlgorithmCode(algorithm, language) {
+                fetch('algorithms/' + algorithm + "/" + language + ".html")
+                    .then(response => response.text())
+                    .then(data => {
+                        const codeContainer = document.getElementById('algorithm-code-container-' + algorithm)
+                        codeContainer.innerHTML = data
+                        codeContainer.classList.remove(...codeContainer.classList)
+                        codeContainer.classList.add('language-' + language)
+                    })
+                    .catch(error => console.error('Error loading algorithm-code-' + algorithm, "for language", language))
+            }
+        </script>
+    </div>
+
+
 </body>
