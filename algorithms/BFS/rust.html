@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 
-fn bfs(graph: &HashMap<i32, HashSet<i32>>, start_node: i32, end_node: i32) -> Vec<i32> {
+fn bfs(graph: &HashMap&lt;i32, HashSet&lt;i32&gt;&gt;, start_node: i32, end_node: i32) -&gt; Vec&lt;i32&gt; {
     let mut previous_node = HashMap::new();
     let mut queue = VecDeque::from(vec![start_node]);
     let mut path = Vec::new();
