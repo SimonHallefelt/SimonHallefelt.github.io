@@ -7,6 +7,7 @@
     <title>Simon Hallefält</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prism.css">
 </head>
 
 <body>
@@ -63,8 +64,10 @@
                 </pre>
             </div>
         </div>
-    </div> -->
+    </div>  -->
     <div id="algorithms-container" class="algorithms-container">
+
+        <script src="prism.js"></script>
         <script>
             const algorithms = {
                 "BFS" : ["java", "rust"]
@@ -122,11 +125,11 @@
                         codeContainer.innerHTML = data
                         codeContainer.classList.remove(...codeContainer.classList)
                         codeContainer.classList.add('language-' + language)
+                        Prism.highlightElement(codeContainer);
                     })
                     .catch(error => console.error('Error loading algorithm-code-' + algorithm, "for language", language))
             }
         </script>
+        
     </div>
-
-
 </body>
