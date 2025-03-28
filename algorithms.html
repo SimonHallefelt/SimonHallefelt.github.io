@@ -70,7 +70,7 @@
         <script src="prism.js"></script>
         <script>
             const algorithms = {
-                "BFS" : ["java", "rust"]
+                "BFS" : ["java", "rust", "javaScript"]
             }
     
             makeAlgorithmsContainers()
@@ -84,7 +84,7 @@
 
                     const algorithmTitle = document.createElement('h3')
                     algorithmTitle.classList.add('algorithm-title')
-                    algorithmTitle.textContent = algorithm
+                    algorithmTitle.textContent = algorithm.toUpperCase()
                     algorithmContainer.appendChild(algorithmTitle)
 
                     const algorithmLanguagesButtons = document.createElement('nav')
