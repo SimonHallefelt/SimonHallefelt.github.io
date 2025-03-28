@@ -229,6 +229,19 @@ h6,
 }
 
 .algorithm-code {
-    margin-top: 20px;
-    border-top: 2px solid var(--accent-color);
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.algorithm-title {
+    margin-left: 10px;
+    padding-bottom: 5px;
+}
+
+.algorithm-languages-buttons {
+    margin-bottom: 5px;
+}
+.algorithm-language-button {
+    margin-left: 10px;
+    text-transform: capitalize;
 }
