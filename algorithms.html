@@ -71,7 +71,8 @@
         <script>
             const algorithms = {
                 "BFS" : ["java", "rust", "javaScript"], // https://open.kattis.com/problems/erdosnumbers
-                "Stable Matchings" : ["rust"]
+                "Stable Matchings" : ["rust"],
+                "Greatest Common Divider": ["rust"]
             }
     
             makeAlgorithmsContainers()
@@ -123,7 +124,7 @@
                     .then(response => response.text())
                     .then(data => {
                         const codeContainer = document.getElementById('algorithm-code-container-' + algorithm)
-                        codeContainer.innerHTML = data
+                        codeContainer.innerHTML = data.replace(/</g, "&lt;").replace(/>/g, "&gt;")
                         codeContainer.classList.remove(...codeContainer.classList)
                         codeContainer.classList.add('language-' + language)
                         Prism.highlightElement(codeContainer);
