@@ -1,0 +1,34 @@
+use std::collections::{HashMap, VecDeque};
+
+// Gale Shapley algorithm: stable_matchings/deferred_acceptance 
+// g1: HashMap[g1_node, queue[most wanted g2_node first]]
+// g2: Vec[HashMap[g1_node, g2_node desire for of g1_node]]
+// return/stable_match: HashMap[g2_node, best g1_node match]
+fn stable_matchings(mut g1: HashMap<usize, VecDeque<usize>>, g2: Vec<HashMap<usize, usize>>) -> HashMap<usize, usize> {
+    let mut stable_match = HashMap::new();
+    let mut no_match = VecDeque::from(g1.keys().map(|a| *a).collect::<Vec<usize>>());
+    let mut g1_node;
+    let mut g2_node;
+    while !no_match.is_empty() {
+        g1_node = no_match.pop_front().unwrap();
+        let t = g1.get_mut(&g1_node).unwrap().pop_front();
+        g2_node = match t {
+            Some(t) => t,
+            None => continue
+        };
+        if g2.get(g2_node).unwrap().get(&g1_node).is_none() {continue;} 
+
+        if !stable_match.contains_key(&g2_node) {
+            stable_match.insert(g2_node, g1_node);
+        } else {
+            let new_desirability = *g2.get(g2_node).unwrap().get(stable_match.get(&g2_node).unwrap()).unwrap();
+            let current_desirability = *g2.get(g2_node).unwrap().get(&g1_node).unwrap();
+            if new_desirability > current_desirability {
+                no_match.push_back(stable_match.insert(g2_node, g1_node).unwrap());
+            } else {
+                no_match.push_back(g1_node);
+            }
+        }
+    }
+    stable_match
+}
