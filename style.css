@@ -7,7 +7,7 @@
     --accent-color: blue;
     --wrong: red;
     --highlight: yellow;
-    --background-gray: #9b9b9b;
+    --background-gray: #b1b1b1;
 }
 
 * {
@@ -91,6 +91,7 @@ h6,
 .home-container-intro {
     padding-top: 100px;
     margin-left: 25%;
+    margin-bottom: 30px;
     max-width: 50%;
     display: flex;
     align-items: center;
