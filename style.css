@@ -121,17 +121,21 @@ h6,
 
 /* home -> programming-knowledge */
 .programming-knowledge {
-    padding-top: 100px;
+    padding-top: 80px;
     padding-bottom: 100px;
+    padding-left: 15%;
+    padding-right: 15%;
     background-color: var(--background-gray);
 }
+
 .programming-knowledge-title{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 
-.knowledge-container{
+.knowledge-container{ /* The items are not evenly spaced because their lengths affect the spacing */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
