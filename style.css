@@ -109,11 +109,11 @@ h6,
 
 @keyframes home-container-intro-animation {
     0% {
-        padding-top: 150px;
+        transform: translateY(50px);
         opacity: 0%;
     }
     100% {
-        padding-top: 100px;
+        transform: translateY(0px);
         opacity: 100%;
     }
 }
