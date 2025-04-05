@@ -118,8 +118,8 @@ h6,
 } */
 
 .me-img {
-    max-height: 600px;
-    opacity: 95%;
+    max-height: 500px;
+    opacity: 90%;
 }
 
 /* home -> programming-knowledge */
@@ -164,10 +164,7 @@ h6,
 
 .work-experience-container {
     border: 2px solid var(--background-gray);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     margin: 10px;
     padding: 10px;
 }
@@ -305,10 +302,7 @@ h6,
 .algorithm-container {
     margin-top: 20px;
     border: 2px solid var(--accent-color);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
     overflow: hidden; 
 }
 
