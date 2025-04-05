@@ -133,15 +133,15 @@ h6,
 
 .programming-knowledge-title {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
-.knowledge-container { /* The items are not evenly spaced because their lengths affect the spacing */
+.knowledge-container {
     margin-top: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 100px;
     opacity: 0;
 }
 
