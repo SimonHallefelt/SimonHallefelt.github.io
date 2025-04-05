@@ -145,6 +145,24 @@ h6,
     opacity: 0;
 }
 
+
+/* home -> portfolio */
+
+/* home -> work experience */
+.work-experiences-container {
+
+}
+
+.work-experience-container {
+    border: 2px solid var(--background-gray);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
 /* home -> bottom of the page */
 .home-end-section {
     width: 100%;
