@@ -7,7 +7,7 @@
     --accent-color: blue;
     --wrong: red;
     --highlight: yellow;
-    --background-gray: #b1b1b1;
+    --background-gray: #cccccc;
 }
 
 * {
@@ -18,7 +18,6 @@
 
 /* body */
 body {
-    min-height: 120vh;
     color: var(--light-text-color);
 }
 
@@ -37,6 +36,18 @@ h6,
   color: var(--dark-color);
 
   text-transform: capitalize;
+}
+
+/* animations */
+@keyframes fade-in-upwards {
+    0% {
+        transform: translateY(50px);
+        opacity: 0%;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
 }
 
 /* navbar */
@@ -90,34 +101,25 @@ h6,
 /* home -> hello */
 .home-container-intro {
     padding-top: 100px;
+    margin-bottom: 40px;
+    width: 50%;
     margin-left: 25%;
-    margin-bottom: 30px;
-    max-width: 50%;
     display: flex;
+    justify-content: center;
     align-items: center;
+    gap: 50px;
     
     animation-duration: 3s;
-    animation-name: home-container-intro-animation;
+    animation-name: fade-in-upwards;
 }
 
-.intro-text {
+/* .intro-text {
     margin-right: 50px;
-}
+} */
 
 .me-img {
     max-height: 600px;
     opacity: 95%;
-}
-
-@keyframes home-container-intro-animation {
-    0% {
-        transform: translateY(50px);
-        opacity: 0%;
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 100%;
-    }
 }
 
 /* home -> programming-knowledge */
@@ -129,17 +131,26 @@ h6,
     background-color: var(--background-gray);
 }
 
-.programming-knowledge-title{
+.programming-knowledge-title {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-bottom: 20px;
 }
 
-.knowledge-container{ /* The items are not evenly spaced because their lengths affect the spacing */
+.knowledge-container { /* The items are not evenly spaced because their lengths affect the spacing */
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    opacity: 0;
+}
+
+/* home -> bottom of the page */
+.home-end-section {
+    width: 100%;
+    background-color: var(--background-gray);
+    text-align: center;
+    padding: 20px;
 }
 
 /* game */
