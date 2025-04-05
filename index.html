@@ -111,4 +111,18 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // add animations that run when visible
+        const observer = new IntersectionObserver((entries) =>{
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fade-in-upwards 3s forwards';
+                }
+            })
+        })
+
+        observer.observe(document.querySelector('.programming-knowledge-title'))
+        observer.observe(document.querySelector('.knowledge-container'))
+    </script>
 </body>
