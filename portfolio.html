@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simon Hallefält</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prism.css">
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('html/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data
+            })
+            .catch(error => console.error('Error loading navbar:', error))
+    </script>
+
+    <section class="portfolio">
+        <div class="portfolio-projects-summary-container">
+            <h2 class="portfolio-projects-summary-title">
+                PORTFOLIO SUMMARY
+            </h2>
+            <div class="portfolio-project-summary-container">
+                <img src="images/portfolio/ServiceRobotics/robot.jpg" alt="ServiceRobotics-robot" class="portfolio-project-summary-img">
+
+                <div class="portfolio-project-summary-text">
+                    <h3>ServiceRobotics</h3>
+                    <p>
+                        In the image, you can see a robot that was designed and programmed 
+                        to navigate a labyrinth, locate objects within it (cylinders), and 
+                        carry them out of the labyrinth while meeting time constraints.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-projects-container">
+            <h2 class="portfolio-projects-title">
+                DETAILED PORTFOLIO
+            </h2>
+            <div class="portfolio-project-container">
+                <img src="images/portfolio/ServiceRobotics/robot.jpg" alt="ServiceRobotics-robot" class="portfolio-project-img">
+
+                <div class="portfolio-project-text">
+                    <h3>ServiceRobotics</h3>
+                    <p>
+                        In the image, you can see a robot that was designed and programmed 
+                        to navigate a labyrinth, locate objects within it (cylinders), and 
+                        carry them out of the labyrinth while meeting time constraints.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>

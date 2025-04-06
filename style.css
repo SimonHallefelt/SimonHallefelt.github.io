@@ -325,3 +325,68 @@ h6,
     margin-left: 10px;
     text-transform: capitalize;
 }
+
+/* portfolio */
+.portfolio {
+    margin-top: 100px;
+}
+
+/* portfolio -> portfolio-summary */
+.portfolio-projects-summary-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-project-summary-container {
+    margin: 20px;
+    padding: 10px;
+    max-width: 30vw;
+    max-height: 30vh;
+    border: 2px solid var(--accent-color);
+    border-radius: 15px;
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+}
+
+.portfolio-project-summary-img {
+    max-width: 33%;
+    max-height: 95%;
+    border-radius: 10px;
+}
+
+.portfolio-project-summary-text {
+    margin: 20px;
+}
+
+/* portfolio -> detailed-portfolio */
+.portfolio-projects-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-project-container {
+    margin: 20px;
+    padding: 10px;
+    max-width: 90vw;
+    max-height: 80vh;
+    border: 2px solid var(--accent-color);
+    border-radius: 15px;
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+}
+
+.portfolio-project-img {
+    max-width: 30vw;
+    max-height: 95%;
+    border-radius: 10px;
+}
+
+.portfolio-project-text {
+    margin: 20px;
+}
