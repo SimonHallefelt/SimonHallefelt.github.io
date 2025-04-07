@@ -105,20 +105,24 @@ b {
 .home-container-intro {
     padding-top: 100px;
     margin-bottom: 40px;
-    width: 50%;
-    margin-left: 25%;
+    margin-left: 10%;
+    margin-right: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
+    flex-wrap: wrap;
     
     animation-duration: 3s;
     animation-name: fade-in-upwards;
 }
 
-/* .intro-text {
-    margin-right: 50px;
-} */
+.intro-text {
+    min-width: 200px;
+    max-width: 550px;
+    flex-grow: 1;
+    flex-basis: 0;
+}
 
 .me-img {
     max-height: 500px;
@@ -145,7 +149,14 @@ b {
     align-items: center;
     justify-content: center;
     gap: 100px;
+    flex-wrap: wrap;
     opacity: 0;
+}
+
+.knowledge-text-container {
+    min-width: 150px;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 
