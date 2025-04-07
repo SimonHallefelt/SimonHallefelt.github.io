@@ -365,10 +365,13 @@ b {
     max-width: 33%;
     max-height: 95%;
     border-radius: 10px;
+    object-fit: contain;
 }
 
 .portfolio-project-summary-text {
-    margin: 20px;
+    margin: 10px;
+    padding: 10px;
+    overflow: auto;
 }
 
 /* portfolio -> portfolio-details */
