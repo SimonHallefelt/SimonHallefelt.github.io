@@ -343,6 +343,8 @@ b {
 
 .portfolio-projects-summary-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .portfolio-project-summary-container {
@@ -355,6 +357,7 @@ b {
     border-radius: 15px;
     overflow: hidden; 
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -366,6 +369,7 @@ b {
 }
 
 .portfolio-project-summary-text {
+    max-height: 100%;
     margin: 10px;
     padding: 10px;
     overflow: auto;
