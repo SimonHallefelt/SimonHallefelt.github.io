@@ -33,9 +33,12 @@ h5,
 .h5,
 h6,
 .h6 {
-  color: var(--dark-color);
+    color: var(--dark-color);
+    text-transform: capitalize;
+}
 
-  text-transform: capitalize;
+b {
+    color: var(--dark-color);
 }
 
 /* animations */
@@ -339,6 +342,13 @@ h6,
     align-items: center;
 }
 
+.portfolio-projects-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 .portfolio-project-summary-container {
     margin: 20px;
     padding: 10px;
@@ -361,7 +371,7 @@ h6,
     margin: 20px;
 }
 
-/* portfolio -> detailed-portfolio */
+/* portfolio -> portfolio-details */
 .portfolio-projects-container {
     display: flex;
     flex-direction: column;
