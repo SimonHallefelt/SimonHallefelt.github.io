@@ -335,18 +335,14 @@ b {
 }
 
 /* portfolio -> portfolio-summary */
-.portfolio-projects-summary-container {
+.portfolio-summary-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.portfolio-projects-summary-row {
+.portfolio-projects-summary-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
 }
 
 .portfolio-project-summary-container {
@@ -354,6 +350,7 @@ b {
     padding: 10px;
     max-width: 30vw;
     max-height: 30vh;
+    min-width: 300px;
     border: 2px solid var(--accent-color);
     border-radius: 15px;
     overflow: hidden; 
